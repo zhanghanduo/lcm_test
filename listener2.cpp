@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 #include <lcm/lcm-cpp.hpp>
-#include "exlcm/example_t.hpp"
+#include "obs_t.hpp"
 using namespace std;
 
 class Handler
@@ -22,25 +22,25 @@ public:
 
     void handleMessage(const lcm::ReceiveBuffer* rbuf,
                        const std::string& chan,
-                       const exlcm::example_t* msg)
+                       const exlcm::obs_t* msg)
     {
         int i;
-//        std::vector <exlcm::example_t> receive;
-//        receive.resize(msg->obstacle_set.size());
-//        receive = msg->obstacle_set;
+
         printf("Received message on channel \"%s\":\n", chan.c_str());
-        cout << "type of the message: " << msg->name.c_str() << endl;
-        printf("  timestamp   = %ld\n", msg->timestamp);
-        printf("  position    = (%f, %f, %f)\n",
-               msg->position[0], msg->position[1], msg->position[2]);
-        printf("  orientation = (%f, %f, %f, %f)\n",
-               msg->orientation[0], msg->orientation[1],
-               msg->orientation[2], msg->orientation[3]);
-        cout << "num of ranges: " << msg->num_ranges << endl;
-        for(i = 0; i < msg->num_ranges; i++)
-            printf("range of %d is: %d", i, msg->ranges[i]);
+//        cout << "type of the message: " << msg->name.c_str() << endl;
+//        printf("  timestamp   = %ld\n", msg->timestamp);
+        cout << "starting col = " << msg->startingCol;
+        cout << "starting col = " << msg->endingCol;
+//        printf("  position    = (%f, %f, %f)\n",
+//               msg->position[0], msg->position[1], msg->position[2]);
+//        printf("  orientation = (%f, %f, %f, %f)\n",
+//               msg->orientation[0], msg->orientation[1],
+//               msg->orientation[2], msg->orientation[3]);
+        cout << "num of ranges: " << msg->noOfPixels << endl;
+        for(i = 0; i < msg->noOfPixels; i++)
+            printf("range of %d is: %d", i, msg->points[i]);
 //                printf("max disparity of %d is: %d", i, msg->obstacle_set[i].max_disparity);
-        printf("  enabled     = %d\n", msg->enabled);
+        printf("  enabled     = %d\n", msg->which_class);
 //        cout << "point2 " << msg->obstacle_set[0].points[0].y << endl;
     }
 };

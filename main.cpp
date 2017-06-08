@@ -24,17 +24,22 @@ int main(int argc, char ** argv)
     point1.y = 13;
     exlcm::obs_t ob1;
     ob1.max_disparity = 15;
-//    ob1.noOfPixels = 20;
-    ob1.points.clear();
-    ob1.points.push_back(point1);
-    ob1.points.push_back(point1);
-    ob1.noOfPixels = int(ob1.points.size());
+
+//    ob1.points.clear();
+//    ob1.points.push_back(point1);
+//    ob1.points.push_back(point1);
+//    ob1.noOfPixels = int(ob1.points.size());
+    ob1.noOfPixels = 2;
+    ob1.points.resize(ob1.noOfPixels);
+    ob1.points[0] = point1;
+    ob1.points[1] = point1;
+    
+    
     ob1.endingRow = 15;
     ob1.endingCol = 20;
     ob1.startingRow = 1;
     ob1.startingCol = 5;
     ob1.which_class = 1;
-//    std::cout << "noOfPixels: " << ob1.noOfPixels << std::endl;
 
     my_data.utime = 0.015135;
     my_data.position[0] = 1;
@@ -45,13 +50,19 @@ int main(int argc, char ** argv)
     my_data.orientation[1] = 2.2;
     my_data.orientation[2] = 3.3;
     my_data.orientation[3] = 4.4;
-    my_data.obstacle_set.clear();
-    my_data.obstacle_set.push_back(ob1);
-    my_data.obstacle_set.push_back(ob1);
-    my_data.obstacle_set.push_back(ob1);
-    my_data.num = int(my_data.obstacle_set.size());
-//    my_data.obstacle_set.resize(my_data.num);
-
+    
+    
+//    my_data.obstacle_set.clear();
+//    my_data.obstacle_set.push_back(ob1);
+//    my_data.obstacle_set.push_back(ob1);
+//    my_data.obstacle_set.push_back(ob1);
+//    my_data.num = int(my_data.obstacle_set.size());
+    my_data.num = 3;
+    my_data.obstacle_set.resize(my_data.num);
+    my_data.obstacle_set[0] = ob1;
+    my_data.obstacle_set[1] = ob1;
+    my_data.obstacle_set[2] = ob1;
+    
     my_data.resolution = 0.77;
     my_data.name = "send_test";
     my_data.status = 1;
